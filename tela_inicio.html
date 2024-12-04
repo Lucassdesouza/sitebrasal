@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page 1</title>
+  <link rel="stylesheet" href="styles.css"> 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+<body>
+  <div class="logo-container">
+    <img src="ouvidoriaPrancheta 1.png" alt="Logo da Brasal" class="logo">
+  </div>
+
+  <h1>Bem-vindo!</h1>
+  <p>Escolha uma das opções abaixo:</p>
+
+  <div class="card-container">
+    <div class="card" onclick="location.href='tela1.html'">
+      <h2>Registro de Colaborador</h2>
+      <p>Acesse o Formulário 1 para informações exclusivas.</p>
+    </div>
+    <div class="card" onclick="location.href='tela2.html'">
+      <h2>Solicitar Serviço</h2>
+      <p>Acesse o Formulário 2 para mais detalhes.</p>
+    </div>
+  </div>
+
+  <div class="grafico-container">
+    <canvas id="meuGrafico1"></canvas>
+    <canvas id="meuGrafico2"></canvas>
+  </div>
+
+  <script>
+    // Função para buscar dados e criar gráfico
+    function criarGrafico(idGrafico, urlJson, rotuloEixoX, rotuloEixoY, corFundo, corBorda) {
+      fetch(urlJson)
+        .then(response => response.json())
+        .then(data => {
+          const ctx = document.getElementById(idGrafico).getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.map(item => item[rotuloEixoX]),
+              datasets: [{
+                label: rotuloEixoY,
+                data: data.map(item => item[rotuloEixoY]),
+                backgroundColor: corFundo,
+                borderColor: corBorda,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        });
+    }
+
+    // Cria o gráfico de responsável com cores da Brasal
+    criarGrafico('meuGrafico1', 'dados.json', 'Responsável', 'ID', '#C8102E', '#333');
+
+    // Buscar os dados e criar o gráfico de status com cores da Brasal
+    fetch('dados.json')
+      .then(response => response.json())
+      .then(data => {
+        // Contar as ocorrências de cada status
+        const statusCounts = {};
+        data.forEach(item => {
+          const status = item.Status;
+          statusCounts[status] = (statusCounts[status] || 0) + 1;
+        });
+
+        // Criar o gráfico de status
+        const ctx2 = document.getElementById('meuGrafico2').getContext('2d');
+        new Chart(ctx2, {
+          type: 'bar',
+          data: {
+            labels: Object.keys(statusCounts), // Rótulos do eixo X (os diferentes status)
+            datasets: [{
+              label: 'Contagem de Status', // Legenda do gráfico
+              data: Object.values(statusCounts), // Dados do eixo Y (a contagem de cada status)
+              backgroundColor: '#333', // Cor cinza escuro da Brasal
+              borderColor: '#C8102E', // Cor vermelha da Brasal
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true // Começa o eixo Y em zero
+              }
+            }
+          }
+        });
+      });
+  </script>
+</body>
+</html>

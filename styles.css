@@ -1,0 +1,139 @@
+/* Fonte e Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F7F7F7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 1  20px;
+  }
+  
+  h1 {
+    color: #C8102E;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilos para os cards na Landing Page 1 */
+  .card-container {
+    display: flex;
+    gap: 20px;
+    /* Espaço entre os cards */
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h2 {
+    color: #C8102E;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 0.8em;
+    color: #555;
+  }
+  
+  /* Botão estilizado para redirecionamento */
+  .option-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #C8102E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .option-btn:hover {
+    background-color: #A10E23;
+    transform: translateY(-2px);
+  }
+  
+  /* Estilo para os iframes */
+  iframe {
+    width: 100%;
+    max-width: 1800px;
+    /* Aumentei o max-width */
+    height: 90vh;
+    /* Aumentei o height */
+    border: 2px solid #C8102E;
+    border-radius: 8px;
+  }
+  
+  /* Estilos para a logo */
+  .logo-container {
+    position: relative;
+    top: -40px;
+    /* Move a logo para cima */
+    margin-bottom: 20px;
+    /* Espaço entre a logo e o título */
+  }
+  
+  .logo {
+    width: 150px;
+    /* Ajuste o tamanho da logo conforme necessário */
+    height: auto;
+  }
+  
+  button.option-btn {
+    display: block;
+    /* Torna o botão um elemento de bloco */
+    margin: 20px auto;
+    /* Margem superior e inferior de 20px, e centraliza horizontalmente */
+  }
+  
+  /* Estilos para os gráficos */
+  .grafico-container {
+    display: flex;
+    /* Permite que os gráficos fiquem lado a lado */
+    gap: 20px;
+    /* Espaço entre os gráficos */
+    justify-content: center;
+    /* Centraliza os gráficos horizontalmente */
+    width: 100%;
+    /* Ocupa toda a largura disponível */
+    max-width: 900px;
+    /* Largura máxima do contêiner */
+    margin: 20px auto;
+    /* Centraliza o contêiner na página */
+  }
+  
+  .grafico-container>canvas {
+    width: 45%;
+    /* Cada gráfico ocupa 45% da largura do contêiner */
+    height: 400px;
+    /* Altura do gráfico */
+  }
